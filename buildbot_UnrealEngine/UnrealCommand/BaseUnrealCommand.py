@@ -1,5 +1,5 @@
 from buildbot.process.buildstep import BuildStep, ShellMixin
-from buildbot.plugins.util import LogLineObserver
+from buildbot.plugins import util
 from buildbot.process.results import FAILURE
 from buildbot.process.results import SUCCESS
 from buildbot.process.results import WARNINGS
@@ -9,7 +9,7 @@ import re
 from twisted.internet import defer
 
 
-class VSLogLineObserver(LogLineObserver):
+class VSLogLineObserver(util.LogLineObserver):
 
     stdoutDelimiter = "\r\n"
     stderrDelimiter = "\r\n"
@@ -28,7 +28,7 @@ class VSLogLineObserver(LogLineObserver):
     logerrors = None
 
     def __init__(self, **kwargs):
-        LogLineObserver.__init__(self, **kwargs)
+        util.LogLineObserver.__init__(self, **kwargs)
 
     @defer.inlineCallbacks
     def getOrCreateLog(self, logName):
